@@ -157,14 +157,10 @@ class Section extends Component {
 
     const topSeparatorComponent = topSeparator ? (
       <Separator insetLeft={0} tintColor={separatorTintColor} />
-    ) : (
-      nil
-    );
+    ) : null;
     const bottomSeparatorComponent = bottomSeparator ? (
       <Separator insetLeft={0} tintColor={separatorTintColor} />
-    ) : (
-      nil
-    );
+    ) : null;
 
     return (
       <View style={_styles.section}>
