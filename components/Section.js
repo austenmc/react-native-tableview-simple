@@ -23,6 +23,7 @@ class Section extends Component {
   render() {
     const {
       allowFontScaling,
+      bottomSeparator,
       children,
       footerComponent,
       headerComponent,
@@ -35,6 +36,7 @@ class Section extends Component {
       separatorInsetLeft,
       separatorInsetRight,
       separatorTintColor,
+      topSeparator,
     } = this.props;
 
     const header = this.props.header ? this.props.header : false;
@@ -153,12 +155,23 @@ class Section extends Component {
       return undefined;
     };
 
+    const topSeparatorComponent = topSeparator ? (
+      <Separator insetLeft={0} tintColor={separatorTintColor} />
+    ) : (
+      nil
+    );
+    const bottomSeparatorComponent = bottomSeparator ? (
+      <Separator insetLeft={0} tintColor={separatorTintColor} />
+    ) : (
+      nil
+    );
+
     return (
       <View style={_styles.section}>
         {headerComponent || renderHeader()}
-        <Separator insetLeft={0} tintColor={separatorTintColor} />
+        {topSeparatorComponent}
         {React.Children.map(children, renderChild)}
-        <Separator insetLeft={0} tintColor={separatorTintColor} />
+        {bottomSeparatorComponent}
         {footerComponent || renderFooter()}
       </View>
     );
@@ -189,6 +202,7 @@ const styles = StyleSheet.create({
 
 Section.propTypes = {
   allowFontScaling: PropTypes.bool,
+  bottomSeparator: PropTypes.bool,
   children: PropTypes.node,
   footerComponent: PropTypes.element,
   headerComponent: PropTypes.element,
@@ -203,10 +217,12 @@ Section.propTypes = {
   separatorInsetLeft: PropTypes.number,
   separatorInsetRight: PropTypes.number,
   separatorTintColor: PropTypes.string,
+  topSeparator: PropTypes.bool,
 };
 
 Section.defaultProps = {
   allowFontScaling: true,
+  bottomSeparator: true,
   children: null,
   footerComponent: null,
   headerComponent: null,
@@ -221,6 +237,7 @@ Section.defaultProps = {
   separatorInsetLeft: 15,
   separatorInsetRight: 0,
   separatorTintColor: '#C8C7CC',
+  topSeparator: true,
 };
 
 export default Section;
